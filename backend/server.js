@@ -7,6 +7,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ========== НОВЫЕ СТРОКИ ДЛЯ РАЗДАЧИ ФРОНТЕНДА ==========
+// Раздача статических файлов (CSS, JS, картинки) - ЭТО УЖЕ БЫЛО
+app.use(express.static(path.join(__dirname, '..'))); // (1)
+
+// Обработка корневого маршрута - отдаём index.html
+app.get('/', (req, res) => {                         // (2) НОВОЕ
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
+});                                                  // (3) НОВОЕ
+// =====================================================
+
 // Определяем путь к БД в зависимости от окружения
 const dbPath = process.env.NODE_ENV === 'production'
     ? '/app/data/database.db'   // внутри Docker
