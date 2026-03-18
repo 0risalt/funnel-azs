@@ -1,0 +1,1088 @@
+/* Сброс и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Inter Extra Bold';
+    src: url('fonts/Inter-ExtraBold.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Inter Extra Bold', sans-serif;
+    background-color: #071017;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    overflow: auto;
+}
+
+/* ========== ЗАСТАВКА С ПЛАВНЫМ ПОЯВЛЕНИЕМ ========== */
+.splash-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #071017;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.splash-content {
+    text-align: center;
+    margin-top: 30px;
+    z-index: 2;
+}
+
+/* Логотип с анимацией появления */
+.splash-logo {
+    width: 150px;
+    height: auto;
+    max-height: 130px;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.8s ease forwards 0.3s;
+}
+
+/* Текст FUNNEL с анимацией */
+.splash-title {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+
+/* Подзаголовок с анимацией */
+.splash-subtitle {
+    font-size: 18px;
+    color: white;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.8s ease forwards 0.9s;
+}
+
+/* Изображение ночного города с анимацией */
+.splash-image {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards 1.2s;
+}
+
+.splash-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== ГЛАВНЫЙ ЭКРАН ========== */
+.main-screen {
+    width: 100%;
+    height: 100%;
+    padding: 20px 25px;
+    /* Стандартные padding */
+    overflow-y: auto;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Анимация появления главного экрана */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Шапка */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    /* Шапка без отступа - элементы позиционируются независимо */
+}
+
+/* Левый блок в шапке - начинается на 50px от левого края */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.8s ease forwards 0.3s;
+    margin-left: 50px;
+    /* Логотип и надписи начинаются на 50px от левого края */
+}
+
+.header-logo {
+    width: 100px;
+    height: auto;
+    max-height: 85px;
+}
+
+.header-text h1 {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.admin-link {
+    font-size: 16px;
+    color: #249AE3;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.admin-link:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+.admin-link:active {
+    transform: translateY(0);
+}
+
+/* Статус администратора */
+.admin-status {
+    font-size: 16px;
+    color: #FFD700;
+    /* Золотой цвет для статуса администратора */
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(255, 215, 0, 0.1);
+}
+
+/* Правый блок в шапке */
+.header-right {
+    display: flex;
+    gap: 15px;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideInRight 0.8s ease forwards 0.3s;
+    margin-right: 25px;
+    /* Иконки сохраняют отступ от правого края */
+}
+
+.header-icon {
+    width: 48px;
+    height: auto;
+    max-height: 52px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.header-icon:hover {
+    transform: scale(1.05);
+}
+
+/* ========== ОСНОВНОЙ КОНТЕНТ ========== */
+.main-content {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-areas: "left center right";
+    justify-content: start;
+    align-items: start;
+    gap: 0;
+    min-height: calc(100vh - 180px);
+    padding-left: 150px;
+    /* Колонки начинаются на 150px от левого края */
+}
+
+/* Левая колонка */
+.left-column {
+    grid-area: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: auto;
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 0.8s ease forwards 0.5s;
+}
+
+.qr-container {
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 180px;
+}
+
+.qr-container:hover {
+    transform: scale(1.03);
+}
+
+.qr-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 222/254;
+    object-fit: contain;
+}
+
+.fuel-item img {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 296/204;
+    object-fit: contain;
+}
+
+/* Центральная колонка - начинается через 42px после QR (от левой колонки) */
+.center-column {
+    grid-area: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* Выравнивание по правому краю колонки */
+    gap: 20px;
+    width: auto;
+    margin-left: 42px;
+    /* Расстояние 42px от QR-кода до бонусной карты */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideInUp 0.8s ease forwards 0.7s;
+}
+
+/* Бонусная карта */
+.bonus-card img {
+    width: 320px;
+    height: auto;
+    aspect-ratio: 389/254;
+    object-fit: contain;
+}
+
+.fuel-item.right img {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 296/204;
+    object-fit: contain;
+}
+
+/* Правая колонка - начинается через 230px после центральной колонки (было 180px) */
+.right-column {
+    grid-area: right;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: auto;
+    margin-left: 230px;
+    /* Увеличили расстояние до 230px (было 180px) - на 50px ближе к правому краю */
+    align-items: flex-end;
+    opacity: 0;
+    transform: translateX(30px);
+    animation: slideInRight 0.8s ease forwards 0.9s;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 160px;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.product-item p {
+    font-size: 18px;
+    color: white;
+    text-transform: lowercase;
+}
+
+/* Дополнительные анимации */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== МОДАЛЬНОЕ ОКНО QR ========== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(7, 16, 23, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 20px;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: modalAppear 0.3s ease forwards 0.1s;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-qr {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: color 0.3s;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    color: #249AE3;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* ========== АДМИНИСТРАТИВНАЯ ПАНЕЛЬ ========== */
+.admin-screen {
+    width: 100%;
+    height: 100vh;
+    /* Вся высота окна */
+    padding: 15px 20px;
+    overflow: hidden;
+    /* Убираем прокрутку */
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 150px;
+    /* Уменьшаем расстояние между колонками */
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.8s ease forwards 0.5s;
+    height: calc(100vh - 120px);
+    /* Оставшееся место с учетом шапки */
+}
+
+/* Левая колонка административной панели */
+.admin-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Уменьшаем расстояние между кнопками */
+    align-items: center;
+}
+
+/* Общие стили для кнопок админ-панели */
+.admin-btn {
+    width: 450px;
+    /* Уменьшаем ширину (было 577px) */
+    height: 80px;
+    /* Уменьшаем высоту (было 106px) */
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    font-family: 'Inter Extra Bold', sans-serif;
+    font-size: 22px;
+    /* Чуть меньше шрифт */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Эффект при наведении */
+.admin-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: #E8E8E8;
+}
+
+/* Эффект при нажатии */
+.admin-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Эффект нажатия (пульсация) */
+.admin-btn:active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    animation: ripple 0.3s ease-out;
+}
+
+@keyframes ripple {
+    from {
+        opacity: 0.5;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+/* Эффект при наведении (свечение) */
+.btn-hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 0.5s ease;
+}
+
+.admin-btn:hover .btn-hover-effect {
+    left: 100%;
+}
+
+/* Специфичные стили для кнопок */
+.view-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.add-btn:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #FF9800;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #F44336;
+    color: white;
+}
+
+/* Текст кнопок */
+.btn-text {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.admin-btn:hover .btn-text {
+    transform: scale(1.03);
+}
+
+/* Правая колонка (кнопка выхода) */
+.admin-right-column {
+    display: flex;
+    align-items: center;
+    height: auto;
+    margin-top: 95px;
+    /* Чтобы была между 2 и 3 кнопкой */
+}
+
+.logout-btn {
+    width: 220px;
+    /* Уменьшаем ширину (было 267px) */
+    height: 100px;
+    /* Уменьшаем высоту (было 131px) */
+    background-color: #249AE3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Inter Extra Bold', sans-serif;
+    font-size: 22px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(36, 154, 227, 0.3);
+}
+
+/* Эффекты для кнопки выхода */
+.logout-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(36, 154, 227, 0.4);
+    background-color: #1E87D0;
+}
+
+.logout-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(36, 154, 227, 0.3);
+}
+
+.logout-btn:active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    animation: ripple 0.3s ease-out;
+}
+
+.logout-btn:hover .btn-hover-effect {
+    left: 100%;
+}
+
+.logout-btn:hover .btn-text {
+    transform: scale(1.03);
+}
+
+/* Стили для секции бонусов в админке */
+#bonus-section {
+    margin-top: 20px !important;
+    padding: 15px !important;
+    max-width: 750px !important;
+}
+
+#bonus-section h3 {
+    margin-bottom: 15px !important;
+    font-size: 20px !important;
+}
+
+#bonus-section button {
+    padding: 8px 15px !important;
+    font-size: 16px !important;
+}
+
+/* Адаптация для экрана 1366x768 */
+@media (max-width: 1366px) {
+    .admin-content {
+        gap: 100px;
+    }
+
+    .admin-btn {
+        width: 400px;
+        height: 75px;
+        font-size: 20px;
+    }
+
+    .logout-btn {
+        width: 200px;
+        height: 90px;
+        font-size: 20px;
+    }
+}
+
+/* ========== АДАПТИВНОСТЬ ДЛЯ МАЛЕНЬКИХ ЭКРАНОВ ========== */
+@media (max-width: 1300px) {
+    .header-left {
+        margin-left: 30px;
+        /* Уменьшаем отступ для планшетов */
+    }
+
+    .main-content {
+        padding-left: 80px;
+        /* Уменьшаем отступ для планшетов */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "left"
+            "center"
+            "right";
+        gap: 40px;
+        justify-items: center;
+    }
+
+    .left-column,
+    .center-column,
+    .right-column {
+        margin-left: 0;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s ease forwards 0.5s;
+    }
+
+    .center-column {
+        align-items: center;
+    }
+
+    .right-column {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .product-item {
+        width: 180px;
+    }
+
+    /* Адаптивность админ-панели */
+    .admin-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .admin-btn {
+        width: 400px;
+        height: 80px;
+        font-size: 20px;
+    }
+
+    .logout-btn {
+        width: 200px;
+        height: 100px;
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    .admin-right-column {
+        height: auto;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .main-screen {
+        padding: 20px;
+    }
+
+    .header-left {
+        margin-left: 20px;
+        /* Минимальный отступ на мобильных */
+    }
+
+    .main-content {
+        padding-left: 20px;
+        /* Минимальный отступ на мобильных */
+    }
+
+    .main-header {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .header-left {
+        margin-left: 0;
+        /* Центрируем на мобильных */
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-right {
+        margin-right: 0;
+        /* Центрируем на мобильных */
+        align-self: center;
+    }
+
+    .splash-title {
+        font-size: 24px;
+    }
+
+    .splash-subtitle {
+        font-size: 16px;
+    }
+
+    .product-item p {
+        font-size: 16px;
+    }
+
+    /* Адаптивность админ-панели для мобильных */
+    .admin-btn {
+        width: 300px;
+        height: 70px;
+        font-size: 18px;
+    }
+
+    .logout-btn {
+        width: 180px;
+        height: 90px;
+        font-size: 18px;
+    }
+
+    .admin-content {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-screen {
+        padding: 15px;
+    }
+
+    .header-left {
+        margin-left: 10px;
+    }
+
+    .main-content {
+        padding-left: 10px;
+    }
+
+    .header-text h1 {
+        font-size: 24px;
+    }
+
+    .admin-link,
+    .admin-status {
+        font-size: 14px;
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 10px;
+    }
+
+    .qr-container {
+        width: 150px;
+    }
+
+    .fuel-item img,
+    .fuel-item.right img {
+        width: 200px;
+    }
+
+    .bonus-card img {
+        width: 280px;
+    }
+
+    .product-item {
+        width: 140px;
+    }
+
+    /* Адаптивность админ-панели для маленьких экранов */
+    .admin-btn {
+        width: 250px;
+        height: 60px;
+        font-size: 16px;
+    }
+
+    .logout-btn {
+        width: 150px;
+        height: 80px;
+        font-size: 16px;
+    }
+}
+
+/* Для экранов больше 1366px - адаптивный отступ */
+@media (min-width: 1367px) {
+    .header-left {
+        margin-left: calc(50px + (100vw - 1366px) / 3);
+    }
+
+    .main-content {
+        padding-left: calc(150px + (100vw - 1366px) / 3);
+    }
+}
+
+/* Стили для бонусной карты */
+.bonus-card {
+    position: relative;
+    width: 320px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.bonus-card:hover {
+    transform: scale(1.02);
+}
+
+.bonus-background {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.bonus-amount {
+    position: absolute;
+    top: 61%;
+    /* Смещаем ниже (было 55% -> +10% = ~1см) */
+    left: 25%;
+    /* Смещаем левее (было 40% -> -15% = ~5см) */
+    transform: translate(-50%, -50%);
+    color: #000000;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: none;
+    font-family: 'Inter Extra Bold', sans-serif;
+    letter-spacing: 1px;
+    background: transparent;
+    padding: 5px 15px;
+    white-space: nowrap;
+}
+
+/* Для мобильных версий */
+@media (max-width: 1300px) {
+    .bonus-amount {
+        font-size: 28px;
+        left: 25%;
+        top: 65%;
+    }
+}
+
+@media (max-width: 600px) {
+    .bonus-amount {
+        font-size: 24px;
+        padding: 3px 10px;
+        left: 23%;
+        top: 66%;
+    }
+}
+
+/* ========== КАСТОМНЫЕ МОДАЛЬНЫЕ ОКНА ========== */
+
+/* Затемнение фона */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Контейнер модального окна */
+.custom-modal {
+    background: #1a2632;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 2px solid #249AE3;
+    animation: modalPop 0.3s ease;
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Заголовок модального окна */
+.modal-title {
+    color: #249AE3;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Inter Extra Bold', sans-serif;
+}
+
+/* Текст сообщения */
+.modal-message {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Поле ввода */
+.modal-input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    background: #0f1a24;
+    border: 2px solid #3a4a5a;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-family: 'Inter Extra Bold', sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.modal-input:focus {
+    outline: none;
+    border-color: #249AE3;
+}
+
+.modal-input::placeholder {
+    color: #6a7a8a;
+}
+
+/* Контейнер для кнопок */
+.modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Кнопки */
+.modal-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Inter Extra Bold', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.modal-btn.confirm {
+    background: #4CAF50;
+    color: white;
+}
+
+.modal-btn.confirm:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+.modal-btn.cancel {
+    background: #f44336;
+    color: white;
+}
+
+.modal-btn.cancel:hover {
+    background: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(244, 67, 54, 0.3);
+}
+
+.modal-btn.neutral {
+    background: #249AE3;
+    color: white;
+}
+
+.modal-btn.neutral:hover {
+    background: #1E87D0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(36, 154, 227, 0.3);
+}
+
+/* Для админ-панели - фикс z-index */
+.admin-screen .modal-overlay {
+    z-index: 10001;
+}

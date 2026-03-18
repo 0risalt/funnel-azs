@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: funnel-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      # Монтируем локальную папку ./data в /app/data в контейнере
+      - ./data:/app/data
+    ports:
+      - "5000:5000"
+    networks:
+      - funnel-network
+
+  frontend:
+    image: nginx:alpine
+    container_name: funnel-frontend
+    restart: unless-stopped
+    volumes:
+      - .:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - funnel-network
+
+networks:
+  funnel-network:
+    driver: bridge

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUNNEL - АЗС</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Заставка (Splash Screen) -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <img src="images/logo.png" alt="FUNNEL Logo" class="splash-logo">
+            <h1 class="splash-title">FUNNEL</h1>
+            <p class="splash-subtitle">НАМИ ДВИЖЕТ ЛУЧШЕЕ</p>
+        </div>
+        <div class="splash-image">
+            <img src="images/splashscreen.jpg" alt="Ночной город">
+        </div>
+    </div>
+
+    <!-- Главный экран (скрыт до окончания заставки) -->
+    <div id="main-screen" class="main-screen" style="display: none;">
+        <!-- Шапка -->
+        <header class="main-header">
+            <div class="header-left">
+                <img src="images/logo.png" alt="Логотип" class="header-logo">
+                <div class="header-text">
+                    <h1>FUNNEL</h1>
+                    <p class="admin-link" id="admin-link">ВОЙТИ КАК АДМИНИСТРАТОР</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <img src="images/TechSupport.png" alt="Техподдержка" class="header-icon">
+                <img src="images/Messages.png" alt="Сообщения" class="header-icon">
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <main class="main-content">
+            <!-- Левая колонка -->
+            <div class="left-column">
+                <div class="qr-container">
+                    <img src="images/OpenQR.png" alt="Открыть QR" class="qr-image" id="open-qr">
+                </div>
+                <div class="fuel-item">
+                    <img src="images/AI92.png" alt="АИ-92">
+                </div>
+                <div class="fuel-item">
+                    <img src="images/AI100.png" alt="АИ-100">
+                </div>
+            </div>
+
+            <!-- Центральная колонка -->
+            <div class="center-column">
+                <div class="bonus-card" id="bonus-card">
+                    <img src="images/BonusCard.png" alt="Бонусная карта" class="bonus-background">
+                    <div class="bonus-amount" id="bonus-amount">0.00</div>
+                </div>
+                <div class="fuel-item right">
+                    <img src="images/AI95.png" alt="АИ-95">
+                </div>
+                <div class="fuel-item right">
+                    <img src="images/DT.png" alt="ДТ">
+                </div>
+            </div>
+
+            <!-- Правая колонка (товары) -->
+            <div class="right-column">
+                <div class="product-item">
+                    <img src="images/MotorOil.png" alt="Моторное масло">
+                    <p>моторное масло</p>
+                </div>
+                <div class="product-item">
+                    <img src="images/BrakeFluid.png" alt="Тормозная жидкость">
+                    <p>тормозная жидкость</p>
+                </div>
+                <div class="product-item">
+                    <img src="images/Antifreeze.png" alt="Незамерзающая жидкость">
+                    <p>незамерзающая жидкость</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Модальное окно QR-кода -->
+        <div id="qr-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <img src="images/QR.png" alt="QR-код" class="modal-qr">
+            </div>
+        </div>
+    </div>
+
+    <!-- Административная панель (скрыта по умолчанию) -->
+    <div id="admin-screen" class="admin-screen" style="display: none;">
+        <!-- Шапка (такая же как в главном экране) -->
+        <header class="main-header">
+            <div class="header-left">
+                <img src="images/logo.png" alt="Логотип" class="header-logo">
+                <div class="header-text">
+                    <h1>FUNNEL</h1>
+                    <p class="admin-status" id="admin-status">АДМИНИСТРАТОР</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <img src="images/TechSupport.png" alt="Техподдержка" class="header-icon">
+                <img src="images/Messages.png" alt="Сообщения" class="header-icon">
+            </div>
+        </header>
+
+        <!-- Основной контент админ-панели -->
+        <main class="admin-content">
+            <!-- Левая колонка с кнопками -->
+            <div class="admin-left-column">
+                <button class="admin-btn view-btn">
+                    <span class="btn-text">ПРОСМОТР</span>
+                    <div class="btn-hover-effect"></div>
+                </button>
+                <button class="admin-btn add-btn">
+                    <span class="btn-text">ДОБАВЛЕНИЕ</span>
+                    <div class="btn-hover-effect"></div>
+                </button>
+                <button class="admin-btn edit-btn">
+                    <span class="btn-text">ИЗМЕНЕНИЕ</span>
+                    <div class="btn-hover-effect"></div>
+                </button>
+                <button class="admin-btn delete-btn">
+                    <span class="btn-text">УДАЛЕНИЕ</span>
+                    <div class="btn-hover-effect"></div>
+                </button>
+            </div>
+
+            <!-- Кнопка выхода (между 2 и 3 кнопкой) -->
+            <div class="admin-right-column">
+                <button class="logout-btn" id="logout-btn">
+                    <span class="btn-text">ВЫХОД</span>
+                    <div class="btn-hover-effect"></div>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script src="modal.js"></script>
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
