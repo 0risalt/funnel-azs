@@ -2,20 +2,21 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Копируем package.json и package-lock.json
+# Копируем package.json и устанавливаем зависимости
 COPY package*.json ./
+RUN npm ci --only=production && npm cache clean --force
 
-# Устанавливаем зависимости
-RUN npm ci --only=production
-
-# Копируем все файлы проекта
+# Копируем весь код проекта
 COPY . .
 
-# Создаем папку для базы данных
+# Создаём папку для базы данных
 RUN mkdir -p /app/data
 
-# Указываем порт
-EXPOSE 5000
+# Устанавливаем serve глобально для раздачи статических файлов
+RUN npm install -g serve
 
-# Запускаем сервер
-CMD ["node", "backend/server.js"]
+# Открываем порты (5000 для API, 3000 для фронтенда)
+EXPOSE 5000 3000
+
+# Запускаем и бэкенд, и фронтенд
+CMD sh -c "node backend/server.js & serve -s . -l 3000"
